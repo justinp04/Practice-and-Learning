@@ -59,3 +59,15 @@ console.log('arr6 after pop:', arr6);
 // Adding an element to the start of an array
 arr6.unshift('good evening');
 console.log('arr6 after unshift:', arr6);
+
+// Removing an element from the start of an array
+arr6.shift();
+
+// Removing an element from an array by index
+arr6.splice(1, 1);
+
+// Reversing the array order
+arr6.reverse();
+
+// Sorting the array
+arr6.sort();
