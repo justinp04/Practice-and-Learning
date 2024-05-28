@@ -1,0 +1,112 @@
+<!-- When done, remember to upload this chunk of HTML as an aspx file -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>DMS</title>
+        <link rel="stylesheet" href="styles.css">
+        <!-- Roboto font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <!-- Bootstrap -->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    </head>
+    <body>
+        <nav id="nav-bar">
+            <ul id="nav-elements" class="nav-list">
+                <a class="element"><li>Home</li></a>
+                <a class="element"><li>Home</li></a>
+                <a class="element"><li>Home</li></a>
+            </ul>
+        </nav>
+        <div id="main">
+            <h1 id="header" class="pt-4">Document Management System</h1>
+            <div id="dashboard">
+                <div id="published-docs" class="dashboard-box">
+                    <div class="title">
+                        <img/>
+                        <label class="text">Published Documents</label>
+                    </div>
+                    <div class="number">
+                        <label class="big-text">-</label>
+                    </div>
+                </div>
+                <div id="overdue-docs" class="dashboard-box">
+                    <div class="title">
+                        <img/>
+                        <label class="text"> Documents Overdue Review</label>
+                    </div>
+                    <div class="number">
+                        <label class="big-text">-</label>
+                    </div>
+                </div>
+                <div id="accessed-docs" class="dashboard-box">
+                    <div class="title">
+                        <img/>
+                        <label class="text">Documents Accessed</label>
+                    </div>
+                    <div class="number">
+                        <label class="big-text">-</label>
+                    </div>
+                </div>
+                <div id="accessed-docs" class="dashboard-box">
+                    <div class="title">
+                        <img/>
+                        <label class="text">Unpublished Documents in Draft</label>
+                    </div>
+                    <div class="number">
+                        <label class="big-text">-</label>
+                    </div>
+                </div>
+            </div>
+            <div id="search-div">
+                <input id="search-box" type="text" placeholder="Search..."/>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" id="discipline-buttons">
+                <button class="disc-button">HSECS</button>
+                <button class="disc-button">Geo Science</button>
+                <button class="disc-button">Land Access</button>
+                <button class="disc-button">Other</button>
+            </div>
+        </div>
+        <div id="searchHits" class="searchHitsBox">
+            <div class="filterHeader">
+                Filters
+            </div>
+            <div class="hitsHeader">
+                Showing results
+            </div>
+            <div class="filterItemsBox">
+
+            </div>
+            <div class="hitsItemsBox">
+                <div class="hitsList">
+                    <ul>
+                        <li>
+                            <p id="fileName" class="hitsHeaderItem">File Name</p>
+                            <p id="version" class="hitsHeaderItem">Version</p>
+                            <p id="discipline" class="hitsHeaderItem">Discipline</p>
+                            <p id="reviewDate" class="hitsHeaderItem">Next review date</p>
+                        </li>
+                        <li>
+                            <div class="hitsItemTitleDiv">
+                                <img src="assets/Doc Icon.svg" class="hitsItemIcon"/>
+                                <p class="hitsItemTitle">Title</p>
+                            </div>
+                            <p class="hitsItem">Version</p>
+                            <p class="hitsItem">Discipline</p>
+                            <p class="hitsItem">Next Review Date</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <section id="graph">
+
+        </section>
+        <script src="/dms_web/scripts/tree.js"></script>
+    </body>
+</html>
