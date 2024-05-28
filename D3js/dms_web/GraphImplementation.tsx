@@ -1,7 +1,8 @@
 import { fileObject } from './graph.ts';
 import React, { Component } from 'react';
 
-const d3 = require("https://cdn.jsdelivr.net/npm/d3@7");
+
+// const d3 = require("https://cdn.jsdelivr.net/npm/d3@7");
 
 // In React TypeScript, we need to define an interface for what the props and state will look like
 interface IGraphImplementationProps {
