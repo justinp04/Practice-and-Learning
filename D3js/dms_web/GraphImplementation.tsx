@@ -15,7 +15,7 @@ interface IGraphImplementationState {
 
 // Main code
 class GraphImplementation extends Component<IGraphImplementationProps, IGraphImplementationState> {
-    constructor(props) {
+    constructor(props: IGraphImplementationProps) {
         super(props);
 
         this.state = {
@@ -23,7 +23,7 @@ class GraphImplementation extends Component<IGraphImplementationProps, IGraphImp
         }
     }
 
-    makeTree(data) {
+    makeTree(data: any) {
 
         const width = 928;
 
@@ -36,13 +36,13 @@ class GraphImplementation extends Component<IGraphImplementationProps, IGraphImp
         const tree = d3.tree().nodeSize([dx, dy]);
 
         // Sort the tree and apply the layout.
-        root.sort((a, b) => d3.ascending(a.data.name, b.data.name));
+        root.sort((a: { data: { name: any; }; }, b: { data: { name: any; }; }) => d3.ascending(a.data.name, b.data.name));
         tree(root);
 
         // Compute extent of the tree and swap x and y, as the tree is displayed horzontally not vertically.
         let x0 = Infinity;
         let x1 = -x0;
-        root.each(d => {
+        root.each((d: { x: number; }) => {
             if(d.x > x1)
             {
                 x1 = d.x;
@@ -71,8 +71,8 @@ class GraphImplementation extends Component<IGraphImplementationProps, IGraphImp
             .data(root.links())
             .join("path")
             .attr("d", d3.linkHorizontal()
-                .x(d => d.y)
-                .y(d => d.x));
+                .x((d: { y: any; }) => d.y)
+                .y((d: { x: any; }) => d.x));
         
         const node = svg.append("g")
             .attr("stroke-linejoin", "round")
@@ -80,17 +80,17 @@ class GraphImplementation extends Component<IGraphImplementationProps, IGraphImp
         .selectAll()
         .data(root.descendants())
         .join("g")
-            .attr("transform", d => `translate(${d.y},${d.x})`);
+            .attr("transform", (d: { y: any; x: any; }) => `translate(${d.y},${d.x})`);
     
         node.append("circle")
-            .attr("fill", d => d.children ? "#555" : "#999")
+            .attr("fill", (d: { children: any; }) => d.children ? "#555" : "#999")
             .attr("r", 2.5);
     
         node.append("text")
             .attr("dy", "0.31em")
-            .attr("x", d => d.children ? -6 : 6)
-            .attr("text-anchor", d => d.children ? "end" : "start")
-            .text(d => d.data.name)
+            .attr("x", (d: { children: any; }) => d.children ? -6 : 6)
+            .attr("text-anchor", (d: { children: any; }) => d.children ? "end" : "start")
+            .text((d: { data: { name: any; }; }) => d.data.name)
             .attr("stroke", "white")
             .attr("paint-order", "stroke");
         

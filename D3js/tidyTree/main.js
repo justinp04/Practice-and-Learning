@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
       link, // given a node d, its link (if any)
       linkTarget = "_blank", // the target attribute for links (if any)
       width = 640, // outer width, in pixels
-      height, // outer height, in pixels
+      height = 900, // outer height, in pixels
       r = 5, // radius of nodes
       padding = 1, // horizontal padding for first and last column
       fill = "#999", // fill for nodes
@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // If id and parentId options are specified, or the path option, use d3.stratify
       // to convert tabular data to a hierarchy; otherwise we assume that the data is
-      // specified as an object {children} with nested objects (a.k.a. the “flare.json”
-      // format), and use d3.hierarchy.
+      // specified as an object {children} with nested objects and use d3.hierarchy.
       const root = path != null ? d3.stratify().path(path)(data)
           : id != null || parentId != null ? d3.stratify().id(id).parentId(parentId)(data)
           : d3.hierarchy(data, children);
@@ -48,7 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Compute the layout.
       const dx = 10;
+    //   const dy = root.height + padding;
       const dy = width / (root.height + padding);
+      console.log(dy);
       tree().nodeSize([dx, dy])(root);
 
       // Center the tree.
@@ -83,17 +84,18 @@ document.addEventListener("DOMContentLoaded", function() {
           .selectAll("path")
           .data(root.links())
           .join("path")
-              .attr("d", d3.link(curve)
-                  .x(d => d.y)
-                  .y(d => d.x));
+              .attr("d", d3.linkVertical(curve)
+                  .x(d => d.x*4)
+                  .y(d => d.y/2));
 
+    // Might be able to do something with onHover(), such as bring the text forward when it is hovering over the child element.
       const node = svg.append("g")
           .selectAll("a")
           .data(root.descendants())
           .join("a")
           .attr("xlink:href", link == null ? null : d => link(d.data, d))
           .attr("target", link == null ? null : linkTarget)
-          .attr("transform", d => `translate(${d.y},${d.x})`);
+          .attr("transform", d => `translate(${d.x*4},${d.y/2})`);
 
       node.append("circle")
           .attr("fill", d => d.children ? stroke : fill)
