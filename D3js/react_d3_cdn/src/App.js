@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Tree from './components/TreeGraphic.js';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Tree />
     </div>
   );
 }

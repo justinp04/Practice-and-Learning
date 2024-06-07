@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .selectAll("path")
             .data(root.links())
             .join("path")
-                .attr("d", d3.linkVertical(curve)
+                .attr("d", d3.linkVertical()
                     .x(d => d.x*4)
                     .y(d => d.y/2));
 
@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (title != null) node.append("title")
             .text(d => title(d.data, d));
 
+        // If it has a label to append.
         if (L) node.append("text")
             .attr("dy", "0.32em")
             .attr("x", d => d.children ? -6 : 6)
