@@ -174,6 +174,7 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
                             <td><strong>Size (KB)</strong></td>
                         </tr>
                         {this.state.items && this.state.items.map((item, idx) => {
+                            console.log(this.state.items);
                             return (
                                 <tr key={idx}>
                                     <td>{item.Title}</td>
