@@ -11,6 +11,9 @@ import { SPFI, spfi } from "@pnp/sp";
 import { Logger, LogLevel } from "@pnp/logging";
 import { Label, PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
 import { Web } from '@pnp/sp/webs';
+import '@pnp/sp/webs';
+import '@pnp/sp/folders';
+import '@pnp/sp/files/folder';
 
 export interface IAsyncPnpjsProps {
     description: string;
@@ -87,7 +90,7 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
             //Clone items from the state
             const items: IFile[] = JSON.parse(JSON.stringify(this.state.items));
 
-            let res: { Id: number, Title: string }[] = [];
+            const res: { Id: number, Title: string }[] = [];
 
             for (let i = 0; i < items.length; i++) {
                 // you need to use .then syntax here as otherwise the application will stop and await the result
@@ -119,13 +122,19 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
     private _getDemoItems = async (): Promise<void> => {
         try {
             const oldItems = this.state.items;
-            const webUrl = `${window.location.origin}/sites/GreenfieldsExploration/Greenfields%20DMS`;
 
-            console.log(webUrl);
+            // Construct the correct web URL
+            const webUrl = `${window.location.origin}/sites/GFXSharePointDev`;
+            console.log("Web URL:", webUrl);
 
+            // Initialize the Web object
             const web = Web([this._sp.web, webUrl]);
+            console.log("1. Initialized web object.");
+
             let newItems: IFile[] = [];
+
             if (web) {
+                console.log('2. Entered if statement');
                 const response: IResponseItem[] = await web.lists
                     .getByTitle(this.LIBRARY_NAME)
                     .items
@@ -149,10 +158,10 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
         }
     }
 
-    public render(): React.ReactElement < IPnpjsProps > {
-    try {
-        return(
-                <div data-component={ this.LOG_SOURCE } className = { styles.pnpjs } >
+    public render(): React.ReactElement<IPnpjsProps> {
+        try {
+            return (
+                <div data-component={this.LOG_SOURCE} className={styles.pnpjs} >
                     <Label>Welcome to PnP JS Demo!</Label>
                     <PrimaryButton onClick={this._updateTitles}>Update Item Titles</PrimaryButton>
                     <br /><br />
@@ -177,8 +186,8 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
                 </div >
             );
         } catch (err) {
-    Logger.write(`${this.LOG_SOURCE} (render) - ${JSON.stringify(err)}`, LogLevel.Error);
-    return <></>;
-}
+            Logger.write(`${this.LOG_SOURCE} (render) - ${JSON.stringify(err)}`, LogLevel.Error);
+            return <></>;
+        }
     }
 }
