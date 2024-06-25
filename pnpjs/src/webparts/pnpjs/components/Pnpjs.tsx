@@ -26,7 +26,7 @@ export interface IPnpjsState {
 
 export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
     private LOG_SOURCE = "🅿PnPjsExample";
-    private LIBRARY_NAME = "Documents";
+    private LIBRARY_NAME = "Greenfields DMS";
     private _sp: SPFI;
 
     constructor(props: IPnpjsProps) {
@@ -124,7 +124,7 @@ export default class Pnpjs extends React.Component<IPnpjsProps, IPnpjsState> {
             const oldItems = this.state.items;
 
             // Construct the correct web URL
-            const webUrl = `${window.location.origin}/sites/GFXSharePointDev`;
+            const webUrl = `${window.location.origin}/sites/GreenfieldsExploration`;
             console.log("Web URL:", webUrl);
 
             // Initialize the Web object
